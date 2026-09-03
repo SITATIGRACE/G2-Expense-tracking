@@ -23,5 +23,23 @@
     Paid: KES $amountPaid
 """.trimIndent() // removes the common indentation from the beginning of each line of a multiline string.
 
+     /3.5 predicted one
+     //val greeting = "Dear Tenant"
+     //greeting.uppercase()
+     //println(greeting)
+     //greeting is unchanged because uppercase() returns a new String. It does not modify the original greeting
+
+
+
+     //Change to uppercase
+     val greeting = "Dear Tenant"
+     println(greeting.uppercase())
+     //4.1operators
+     //outstanding balance
+     val balance = monthlyRent - amountPaid
+     println("Balance: KES $balance")
+
+
+
 
 
