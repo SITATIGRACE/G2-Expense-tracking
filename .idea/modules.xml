@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Lab2-TenatManagementProject.iml" filepath="$PROJECT_DIR$/Lab2-TenatManagementProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TenantManagementSystem.iml" filepath="$PROJECT_DIR$/TenantManagementSystem.iml" />
     </modules>
   </component>
 </project>
