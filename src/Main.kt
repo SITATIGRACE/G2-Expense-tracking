@@ -79,6 +79,80 @@
      println("Needs reminder (2 months): $needsReminder")
 
 
+     //5.1Making Decisions
+     if (amountPaid >= monthlyRent) {
+         println("Rent is fully paid")
+     } else {
+         println("Rent is outstanding")
+     }
+     //5.2
+     val currentBalance = monthlyRent - amountPaid
+
+     if (currentBalance <= 0) {
+         println("Rent is fully paid")
+     } else if (currentBalance < 10000) {
+         println("Small outstanding balance")
+     } else {
+         println("Large outstanding balance")
+     }
+//5.3 using when statement
+     when {
+         currentBalance <= 0 -> println("Rent is fully paid")
+         currentBalance < 10000 -> println("Small outstanding balance")
+         else -> println("Large outstanding balance")
+     }
+     //5.4 Months in arrears
+     val testArrears = 2 // Change this to 0, 4, 8, or 15 to test different branches
+
+     when (testArrears) {
+         0 -> println("Rent is up to date")
+         in 1..2 -> println("Early arrears")
+         in 3..5 -> println("Serious arrears")
+         in 6..12 -> println("Critical arrears")
+         else -> println("Review tenant account")
+     }
+     //5.5tenant status
+     val tenantStatus = "ACTIVE"
+
+     when (tenantStatus) {
+         "ACTIVE" -> println("Tenant currently occupies the unit.")
+         "VACATED" -> println("Tenant has moved out of the property.")
+         "PENDING" -> println("Application is awaiting approval.")
+         else -> println("Unknown status configuration.")
+     }
+//6.1months 1-12
+     for (month in 1..12) {
+         println(month)
+     }
+//6.2 every second month
+     for (month in 1..12 step 2) {
+         println("Checking payment history for month $month")
+     }
+//6.3countdown
+     for (month in 5 downTo 1) {
+         println(month)
+     }
+     //6.4 with index ()
+     val tenantNames= listOf("Jane", "Brian", "Mary", "David")
+     for ((index, tenant) in tenantNames.withIndex()) {
+         println("${index + 1}. $tenant")
+     }
+     //6.5 while loop
+     var vacantHouses = 0
+
+     while (vacantHouses > 0) {
+         println("Checking vacant houses...")
+     }
+//6.6 do while loop
+     repeat(3) {
+         println("Please pay your rent.")
+
+     }
+     //6.7 repeat()
+     repeat(3) {
+         println("Please pay your rent.")
+
+
 
 
 
