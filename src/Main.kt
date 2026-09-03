@@ -23,7 +23,7 @@
     Paid: KES $amountPaid
 """.trimIndent() // removes the common indentation from the beginning of each line of a multiline string.
 
-     /3.5 predicted one
+     //3.5 predicted one
      //val greeting = "Dear Tenant"
      //greeting.uppercase()
      //println(greeting)
@@ -38,6 +38,34 @@
      //outstanding balance
      val balance = monthlyRent - amountPaid
      println("Balance: KES $balance")
+     //4.2percentage paid
+     //predicted version
+     //you will get a 0%
+     //val percentPaid = (amountPaid / monthlyRent) * 100
+
+     //println("Paid: $percentPaid%")
+
+     //correct method
+     //gives you 80%
+     val percentPaid = (amountPaid * 100) / monthlyRent
+
+     println("Paid: $percentPaid%")
+
+
+
+     //4.3 Division and remainder
+     val instalmentAmount = 6000
+     val fullInstalments = monthlyRent / instalmentAmount
+     val remainingAmount = monthlyRent % instalmentAmount
+
+     println("Full instalments: $fullInstalments")
+     println("Remaining amount: KES $remainingAmount")
+
+     //4.4 Numeric operator
+     val totalRent = monthlyRent.times(6)
+
+     println("Total rent for 6 months: KES $totalRent")
+
 
 
 
