@@ -66,6 +66,18 @@
 
      println("Total rent for 6 months: KES $totalRent")
 
+     //4.5 is rent paid boolean
+     val isRentPaid: Boolean = amountPaid >= monthlyRent
+     println("Is rent fully paid? $isRentPaid")
+
+     //4.6 need reminder
+     var monthsInArrears = 2
+     val rentIsOutstanding = amountPaid < monthlyRent
+
+     // True only if rent is outstanding AND months in arrears is strictly greater than 1
+     var needsReminder = rentIsOutstanding && (monthsInArrears > 1)
+     println("Needs reminder (2 months): $needsReminder")
+
 
 
 
