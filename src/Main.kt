@@ -151,6 +151,19 @@
      //6.7 repeat()
      repeat(3) {
          println("Please pay your rent.")
+     //Part 7 — Lists and Arrays
+    val tenantList = listOf("Jane Wanjiku", "Brian Otieno", "Mary Achieng", "John Kamau")
+    println("First: ${tenantList.first()}, Last: ${tenantList[tenantList.size - 1]}")
+    val houses = arrayOf("A-101", "A-102", "A-103", "A-104")
+    println("Second house: ${houses[1]}")
+    houses[0] = "A-201"
+    println(houses.joinToString(", "))
+    //Part 8 - Null Safety
+    val tenantEmail: String? = null
+    println(tenantEmail)
+    println("Email: ${tenantEmail ?: "Not provided"}")
+    val nextOfKin: String? = "John Doe"
+    println(nextOfKin?.uppercase() ?: "No next of kin on record")
 
 
 
