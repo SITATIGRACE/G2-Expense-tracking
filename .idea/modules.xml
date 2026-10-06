@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Tenant_Management_Sytem.iml" filepath="$PROJECT_DIR$/.idea/modules/Tenant_Management_Sytem.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Tenant_Management_Sytem.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Tenant_Management_Sytem.app.unitTest.iml" />
-    </modules>
-  </component>
-</project>
