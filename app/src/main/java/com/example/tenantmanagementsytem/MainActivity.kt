@@ -1,8 +1,10 @@
+
 package com.example.tenantmanagementsytem
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tenantmanagementsytem.databinding.ActivityMainBinding
@@ -15,68 +17,138 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onCreate")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // 1. SAVE BUTTON LOGIC
+        // RESTORE TENANT AFTER ROTATION
+        if (savedInstanceState != null) {
+            val name = savedInstanceState.getString("tenant_name")
+            val phone = savedInstanceState.getString("tenant_phone")
+            val rent = savedInstanceState.getString("tenant_rent")
+
+            if (name != null && phone != null && rent != null) {
+                val tenant = Tenant(name, phone, rent)
+
+                lastTenant = tenant
+                binding.tenantResultTextView.text = tenant.summary()
+            }
+        }
+
+        // SAVE BUTTON
         binding.saveButton.setOnClickListener {
             val name = binding.tenantNameEditText.text.toString().trim()
             val phone = binding.phoneEditText.text.toString().trim()
             val rent = binding.rentEditText.text.toString().trim()
 
-            // Input Validation Check (Bonus Challenge #3 from Lab guide page 15)
             if (name.isEmpty() || phone.isEmpty() || rent.isEmpty()) {
-                Toast.makeText(this, "Please fill in all fields before saving", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Please fill in all fields before saving",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
             val tenant = Tenant(name, phone, rent)
             lastTenant = tenant
-
-            // Updates the layout results TextView to visually display the structural info details
             binding.tenantResultTextView.text = tenant.summary()
 
-            Toast.makeText(this, "Tenant details saved locally!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Tenant details saved locally!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
-        // 2. CALL TENANT BUTTON LOGIC (Step 12 Mandatory requirement)
+        // CALL TENANT BUTTON
         binding.callButton.setOnClickListener {
             val tenant = lastTenant
 
             if (tenant == null) {
-                Toast.makeText(this, "Save a tenant first", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "Save a tenant first",
+                    Toast.LENGTH_SHORT
+                ).show()
                 return@setOnClickListener
             }
 
-            // Launches system dialer interface
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${tenant.phone}"))
+            val intent = Intent(
+                Intent.ACTION_DIAL,
+                Uri.parse("tel:${tenant.phone}")
+            )
             startActivity(intent)
         }
 
-        // 3. SHARE TENANT BUTTON LOGIC (Bonus Challenge #1 from Lab guide page 15)
+        // SHARE TENANT BUTTON
         binding.shareButton.setOnClickListener {
             val tenant = lastTenant
 
             if (tenant == null) {
-                Toast.makeText(this, "Please input details and click SAVE first!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Please input details and click SAVE first!",
+                    Toast.LENGTH_LONG
+                ).show()
                 return@setOnClickListener
             }
 
-            // Builds the text payload package data tracking pipeline
             val sendIntent = Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TEXT, tenant.summary())
                 type = "text/plain"
             }
 
-            try {
-                // Creates a clean, safe system share manager pop-up menu wrapper intent
-                val chooserIntent = Intent.createChooser(sendIntent, "Share tenant summary via:")
-                startActivity(chooserIntent)
-            } catch (e: Exception) {
-                // Absolute structural hardware fallback security trigger
-                startActivity(sendIntent)
-            }
+            val chooserIntent = Intent.createChooser(
+                sendIntent,
+                "Share tenant summary via:"
+            )
+            startActivity(chooserIntent)
         }
+    }
+
+    // SAVE STATE BEFORE ACTIVITY RECREATION
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onSaveInstanceState")
+
+        lastTenant?.let { tenant ->
+            outState.putString("tenant_name", tenant.name)
+            outState.putString("tenant_phone", tenant.phone)
+            outState.putString("tenant_rent", tenant.rent)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onStop")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onRestart")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("TENANT_LIFECYCLE", "MainActivity: onDestroy")
     }
 }
