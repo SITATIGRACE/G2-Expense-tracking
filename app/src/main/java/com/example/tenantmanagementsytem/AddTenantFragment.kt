@@ -1,4 +1,5 @@
 package com.example.tenantmanagementsytem
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -71,7 +72,11 @@ class AddTenantFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
 
-            findNavController().navigateUp()
+            val action =
+                AddTenantFragmentDirections
+                    .actionAddTenantFragmentToViewTenantsFragment(tenant)
+
+            findNavController().navigate(action)
         }
     }
 

@@ -23,8 +23,32 @@
         android:textStyle="bold"
         android:layout_marginBottom="16dp" />
 
+    <LinearLayout
+        android:id="@+id/newTenantGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#F0F0F0"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/newTenantTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call Tenant" />
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/tenantsListTextView"
+        android:id="@+id/allTenantsTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="No tenants registered yet."

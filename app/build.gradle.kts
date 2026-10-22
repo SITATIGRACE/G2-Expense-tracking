@@ -1,6 +1,9 @@
+
 plugins {
     alias(libs.plugins.android.application)
+    id("androidx.navigation.safeargs.kotlin")
 }
+
 
 android {
     namespace = "com.example.tenantmanagementsytem"
