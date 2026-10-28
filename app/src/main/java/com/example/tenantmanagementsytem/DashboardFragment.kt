@@ -45,7 +45,6 @@ class DashboardFragment : Fragment() {
         }
 
         binding.viewTenantsButton.setOnClickListener {
-            // This line will now compile perfectly since we added the default @null value above
             val action = DashboardFragmentDirections.actionDashboardFragmentToViewTenantsFragment()
             findNavController().navigate(action)
         }

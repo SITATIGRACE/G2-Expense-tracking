@@ -50,7 +50,7 @@
             android:name="newTenant"
             app:argType="com.example.tenantmanagementsytem.Tenant"
             app:nullable="true"
-            android:defaultValue="@null" /> <!-- FIXED HERE: Added default value -->
+            android:defaultValue="@null" />
 
     </fragment>
 
