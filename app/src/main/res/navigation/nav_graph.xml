@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="ui.dashboard.DashboardFragment"
+        android:name="com.example.tenantmanagementsytem.ui.dashboard.DashboardFragment"
         android:label="Dashboard">
 
         <action
@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/addTenantFragment"
-        android:name="ui.tenants.AddTenantFragment"
+        android:name="com.example.tenantmanagementsytem.ui.tenants.AddTenantFragment"
         android:label="Add Tenant">
 
         <action
@@ -43,12 +43,12 @@
 
     <fragment
         android:id="@+id/viewTenantsFragment"
-        android:name="ui.tenants.ViewTenantsFragment"
+        android:name="com.example.tenantmanagementsytem.ui.tenants.ViewTenantsFragment"
         android:label="View Tenants">
 
         <argument
             android:name="newTenant"
-            app:argType="data.model.Tenant"
+            app:argType="com.example.tenantmanagementsytem.data.model.Tenant"
             app:nullable="true"
             android:defaultValue="@null" />
 

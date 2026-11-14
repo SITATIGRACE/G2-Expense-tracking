@@ -1,4 +1,4 @@
-package data.model
+package com.example.tenantmanagementsytem.data.model
 
 import java.io.Serializable
 

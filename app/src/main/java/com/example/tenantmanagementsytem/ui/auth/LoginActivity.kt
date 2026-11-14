@@ -1,11 +1,11 @@
-package ui.auth
+package com.example.tenantmanagementsytem.ui.auth
 
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import ui.main.MainActivity
+import com.example.tenantmanagementsytem.ui.main.MainActivity
 import com.example.tenantmanagementsytem.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

@@ -1,6 +1,6 @@
-package data.repository
+package com.example.tenantmanagementsytem.data.repository
 
-import data.model.Tenant
+import com.example.tenantmanagementsytem.data.model.Tenant
 
 object TenantRepository {
 

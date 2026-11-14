@@ -1,4 +1,4 @@
-package ui.tenants
+package com.example.tenantmanagementsytem.ui.tenants
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import data.model.Tenant
-import data.repository.TenantRepository
+import com.example.tenantmanagementsytem.data.model.Tenant
+import com.example.tenantmanagementsytem.data.repository.TenantRepository
 import com.example.tenantmanagementsytem.databinding.FragmentAddTenantBinding
+import ui.tenants.AddTenantFragmentDirections
 
 class AddTenantFragment : Fragment() {
 
