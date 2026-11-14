@@ -1,10 +1,10 @@
-package com.example.tenantmanagementsytem.ui.auth
+package com.example.tenantmanagementsystem.ui.auth
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tenantmanagementsytem.databinding.ActivityRegisterBinding
+import com.example.tenantmanagementsystem.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
