@@ -1,65 +1,75 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/dashboardTitleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tenant Management Dashboard"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="24dp" />
+    <data>
+        <!-- The layout can use the ViewModel, under the name "viewModel" -->
+        <variable
+            name="viewModel"
+            type="com.example.tenantmanagementsystem.ui.viewmodel.TenantViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginBottom="24dp">
+        android:padding="24dp">
 
         <TextView
-            android:id="@+id/tenantCountTextView"
-            android:layout_width="0dp"
+            android:id="@+id/dashboardTitleTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Tenants\n0"
-            android:textSize="18sp"
+            android:text="Tenant Management Dashboard"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:padding="12dp"
-            android:background="#E8EEF7"
-            android:layout_marginEnd="8dp" />
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
 
-        <TextView
-            android:id="@+id/totalRentTextView"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:text="Total rent\nKSh 0"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="12dp"
-            android:background="#E8EEF7"
-            android:layout_marginStart="8dp" />
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/tenantCountTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{viewModel.tenantCountText}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:background="#E8EEF7"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/totalRentTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{viewModel.totalRentText}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="12dp"
+                android:background="#E8EEF7"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addTenantButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Tenant" />
+
+        <Button
+            android:id="@+id/viewTenantsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Tenants"
+            android:layout_marginTop="16dp" />
+
     </LinearLayout>
-
-    <Button
-        android:id="@+id/addTenantButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Tenant" />
-
-    <Button
-        android:id="@+id/viewTenantsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="View Tenants"
-        android:layout_marginTop="16dp" />
-
-</LinearLayout>
+</layout>
