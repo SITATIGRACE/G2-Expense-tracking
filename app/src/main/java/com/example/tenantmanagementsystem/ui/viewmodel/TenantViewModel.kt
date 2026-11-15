@@ -1,26 +1,22 @@
 package com.example.tenantmanagementsystem.ui.viewmodel
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
+import com.example.tenantmanagementsystem.data.local.TenantDatabase
 import com.example.tenantmanagementsystem.data.model.Tenant
 import com.example.tenantmanagementsystem.data.repository.TenantRepository
+import kotlinx.coroutines.launch
 
-// A Jetpack ViewModel: Android keeps it alive while the screen rotates,
-// and clears it when MainActivity finishes
-class TenantViewModel : ViewModel() {
+class TenantViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository =
+        TenantRepository(TenantDatabase.getDatabase(application).tenantDao())
 
-    // ── 1. THE DATA ───────────────────────────────────────────────
-    // PRIVATE and MUTABLE: only this ViewModel can change it
-    private val _tenants = MutableLiveData<List<Tenant>>(TenantRepository.getTenants().toList())
+    val tenants: LiveData<List<Tenant>> = repository.tenants
 
-    // PUBLIC and READ-ONLY: screens can watch it, not change it
-    val tenants: LiveData<List<Tenant>> = _tenants
-
-    // ── 2. TRANSFORMATIONS: text ready for the screens ────────────
-    // map() makes a NEW LiveData that updates whenever tenants changes
     val tenantCountText: LiveData<String> = tenants.map { list ->
         "Tenants\n${list.size}"
     }
@@ -35,34 +31,28 @@ class TenantViewModel : ViewModel() {
         else list.joinToString("\n\n") { it.summary() }
     }
 
-    // ── 3. ACTIONS the screens can ask for ────────────────────────
-    // Checks the input and saves the tenant.
-    // Returns the new Tenant, or null if the input was not valid
     fun addTenant(name: String, phone: String, rent: String): Tenant? {
         val cleanName = name.trim()
         val cleanPhone = phone.trim()
         val cleanRent = rent.trim()
 
-        // Business rule: all three fields are required
         if (cleanName.isEmpty() || cleanPhone.isEmpty() || cleanRent.isEmpty()) {
             return null
         }
 
         val tenant = Tenant(cleanName, cleanPhone, cleanRent)
-
-        TenantRepository.addTenant(tenant)                   // ask the DATA LAYER to store it
-        _tenants.value = TenantRepository.getTenants().toList()   // every observer updates
-
+        viewModelScope.launch {
+            repository.addTenant(tenant)
+        }
         return tenant
     }
 
-    // ── 4. LIFECYCLE LOGS ─────────────────────────────────────────
     init {
-        Log.d("TENANT_LIFECYCLE", "      TenantViewModel: created")
+        Log.d("TENANT_LIFECYCLE", " TenantViewModel: created")
     }
 
     override fun onCleared() {
         super.onCleared()
-        Log.d("TENANT_LIFECYCLE", "      TenantViewModel: onCleared")
+        Log.d("TENANT_LIFECYCLE", " TenantViewModel: onCleared")
     }
 }
